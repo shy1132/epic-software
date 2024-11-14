@@ -1,0 +1,11 @@
+[Unit]
+Description=auto-awesome-wallpapers
+After=network.target
+
+[Service]
+Type=simple
+ExecStart={{PATH}}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
