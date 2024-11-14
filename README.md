@@ -1,7 +1,7 @@
 # auto-awesome-wallpapers
 very useful...
 
-u need bun installed to build, but it can run in terminal with node or bun
+u need bun installed to build, but it can run in terminal with node or bun \
 im quite aware that the built installer executable is needlessly huge, im just too lazy to fix it because this is joke software
 
 ## support
