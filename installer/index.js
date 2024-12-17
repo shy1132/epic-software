@@ -19,7 +19,7 @@ if (process.platform == 'win32') {
     configPath = os.homedir() + '/.epic-software' //you also leave me no choice
 }
 
-let installPath = configPath + '/bin';
+let installPath = configPath + '/bin'
 
 if (fs.existsSync(configPath)) fs.rmSync(configPath, { recursive: true, force: true })
 fs.mkdirSync(installPath, { recursive: true })
@@ -43,7 +43,8 @@ async function install() {
     if (process.platform == 'win32') {
         console.log('creating open on startup')
         let startupFolder = `${os.homedir()}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup`
-        let batchFile = `cd "${installPath}"\r\npowershell Start-Process -WindowStyle hidden "${installPath}\\epic-software.exe"`
+        let winPath = installPath.replaceAll('/', '\\')
+        let batchFile = `cd "${winPath}"\r\npowershell Start-Process -WindowStyle hidden '${winPath}\\epic-software.exe'`
         fs.writeFileSync(`${startupFolder}/epic-software.bat`, batchFile)
     } else if (process.platform == 'linux') {
         console.log('creating systemd service')
