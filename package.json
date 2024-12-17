@@ -1,13 +1,13 @@
 {
-  "name": "auto-awesome-wallpapers",
-  "version": "1.0.0",
-  "description": "",
+  "name": "epic-software",
+  "version": "1.1.0",
+  "description": "automatically change your wallpaper to @Epicartworks",
   "main": "index.js",
   "scripts": {
     "build": "./build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "shy",
   "license": "ISC"
 }

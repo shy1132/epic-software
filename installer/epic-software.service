@@ -1,5 +1,5 @@
 [Unit]
-Description=auto-awesome-wallpapers
+Description=epic-software
 After=network.target
 
 [Service]

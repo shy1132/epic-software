@@ -6,11 +6,11 @@ const exec = require('util').promisify(cp.exec)
 
 let storeDir;
 if (process.platform == 'win32') {
-    storeDir = os.homedir() + '/AppData/Local/auto-awesome-wallpapers'
+    storeDir = os.homedir() + '/AppData/Local/epic-software'
 } else if (process.platform == 'linux') {
-    storeDir = os.homedir() + '/.local/share/auto-awesome-wallpapers'
+    storeDir = os.homedir() + '/.local/share/epic-software'
 } else {
-    storeDir = os.homedir() + '/.auto-awesome-wallpapers' //you leave me no choice
+    storeDir = os.homedir() + '/.epic-software' //you leave me no choice
 }
 
 fs.mkdirSync(storeDir, { recursive: true })
@@ -41,10 +41,19 @@ async function change(buffer) {
             await exec(`dbus-send --session --dest=org.kde.plasmashell --type=method_call /PlasmaShell org.kde.PlasmaShell.evaluateScript string:"${script}"`)
         } else if (process.env.XDG_SESSION_DESKTOP == 'gnome') { //untested, should work
             await exec(`gsettings set org.gnome.desktop.background picture-uri "file://${safishPath}"`)
-        } else if (process.env.XDG_SESSION_DESKTOP == 'cinnamon') { //untested, should work
+        } else if (process.env.XDG_SESSION_DESKTOP == 'cinnamon') { //works
             await exec(`gsettings set org.cinnamon.desktop.background picture-uri "file://${safishPath}"`)
-        } else if (process.env.XDG_SESSION_DESKTOP == 'xfce') { //untested, should work
-            await exec(`xfconf-query -c xfce4-desktop -p /desktop-image -s "${safishPath}"`)
+        } else if (process.env.XDG_SESSION_DESKTOP == 'mate') { //works
+            await exec(`gsettings set org.mate.background picture-filename "${safishPath}"`)
+        } else if (process.env.XDG_SESSION_DESKTOP == 'xfce') { //works
+            let list = (await exec('xfconf-query -c xfce4-desktop --list')).stdout;
+            list = list.split('\n')
+
+            for (let item of list) {
+                if (item.endsWith('/last-image') || item.endsWith('/last-single-image')) {
+                    await exec(`xfconf-query -c xfce4-desktop -p ${item} -s "${safishPath}"`)
+                }
+            }
         }
     }
 }
