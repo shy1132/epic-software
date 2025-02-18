@@ -31,7 +31,7 @@ async function change(buffer) {
                 d.currentConfigGroup = [
                     'Wallpaper',
                     'org.kde.image',
-                    'General',
+                    'General'
                 ]
                 d.writeConfig('Image', 'file://${safishPath}')
                 d.reloadConfig()
