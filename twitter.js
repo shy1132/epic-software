@@ -34,7 +34,7 @@ class Client {
                 throw `${res.status} ${res.statusText}: ${data}`
             }
 
-            this.authInterval = setInterval(this.authenticate, 3600000)
+            this.authInterval = setInterval(() => this.authenticate(), 3600000)
         } catch (err) {
             throw new Error(`failed to authenticate! ${err}`);
         }
