@@ -8,6 +8,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "shy",
-  "license": "ISC"
+  "author": "shy (shy@shy.rocks)",
+  "license": "MIT"
 }
